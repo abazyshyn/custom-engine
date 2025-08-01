@@ -2,7 +2,7 @@
 
 int main() {
 
-	add(10, 10);
+	Math::add(10, 10);
 	
 
 	return 0;

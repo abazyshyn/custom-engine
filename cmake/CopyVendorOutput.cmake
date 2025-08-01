@@ -11,7 +11,7 @@ function(copy_vendor_output data_list)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${CUSTOM_ENGINE_OUTPUT_DIR}"
         COMMAND ${CMAKE_COMMAND} -E copy
         "${FILE}"
-        "${CUSTOM_ENGINE_OUTPUT_DIR}"
+        "${CUSTOM_ENGINE_OUTPUT_DIR}/"
         COMMENT "Copied ${target_output}"
     )
 
