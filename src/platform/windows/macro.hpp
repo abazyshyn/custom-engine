@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(_WIN32) || defined(__CYGWIN__)
+#if defined(CENGINE_WINDOWS)
 #ifdef CENGINE_BUILD
 #define CENGINE_API __declspec(dllexport)
 #else
