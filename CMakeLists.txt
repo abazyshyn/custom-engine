@@ -16,9 +16,9 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 
 set(CUSTOM_ENGINE "${PROJECT_NAME}")
 set(CUSTOM_ENGINE_ROOT_DIR "${PROJECT_SOURCE_DIR}")
-set(CUSTOM_ENGINE_SRC_DIR "${CUSTOM_ENGINE_ROOT_DIR}/src")
+set(CUSTOM_ENGINE_SRC_DIR "${CUSTOM_ENGINE_ROOT_DIR}/${CUSTOM_ENGINE}/")
 set(CUSTOM_ENGINE_INCLUDE_DIR
-    "${CUSTOM_ENGINE_ROOT_DIR}/src/include/${CUSTOM_ENGINE}")
+    "${CUSTOM_ENGINE_ROOT_DIR}/${CUSTOM_ENGINE}/include/${CUSTOM_ENGINE}")
 set(CUSTOM_ENGINE_OUTPUT_DIR
     "${CUSTOM_ENGINE_ROOT_DIR}/bin/${CMAKE_SYSTEM_NAME}_${CMAKE_HOST_SYSTEM_PROCESSOR}/${CUSTOM_ENGINE}/$<CONFIG>"
 )
@@ -36,5 +36,5 @@ add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/glm")
 #add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/googletest")
 
 add_subdirectory("${CUSTOM_ENGINE_ROOT_DIR}/vendor/glad")
-add_subdirectory(src)
+add_subdirectory("${CUSTOM_ENGINE}")
 add_subdirectory(sandbox)

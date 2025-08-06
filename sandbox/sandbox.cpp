@@ -1,3 +1,2 @@
 #include <cengine.hpp>
-
-#include <custom_engine/core/entry_point.hpp>
+#include <cengine_entry_point.hpp>
