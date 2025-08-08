@@ -14,6 +14,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 option(ENABLE_CLANG_FORMAT "Enable to add clang-format." ON)
 option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 
+# Due to bug in spdlog library
+if (MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 set(CUSTOM_ENGINE "${PROJECT_NAME}")
 set(CUSTOM_ENGINE_ROOT_DIR "${PROJECT_SOURCE_DIR}")
 set(CUSTOM_ENGINE_SRC_DIR "${CUSTOM_ENGINE_ROOT_DIR}/${CUSTOM_ENGINE}")

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <chrono>
+#include <cstdlib>
 #include <utility>
 #include <cstdint>
 #include <fstream>
@@ -24,10 +25,8 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
-#if defined(CENGINE_DEBUG) || defined(CENGINE_DEVELOPMENT)
+#if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
 
 // #include <gtest/gtest.h>
 
 #endif // defined(CENGINE_DEBUG) || defined(CENGINE_DEVELOPMENT)
-
-// Local files
