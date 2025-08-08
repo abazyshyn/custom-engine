@@ -16,7 +16,7 @@ set_target_properties(
 
 target_compile_definitions(
     ${CUSTOM_ENGINE}
-    PRIVATE CENGINE_BUILD
+    PRIVATE CENGINE_BUILD=1
             GLFW_INCLUDE_NONE=1
             $<$<CONFIG:Debug>:CENGINE_DEBUG=1>
             $<$<CONFIG:RelWithDebInfo>:CENGINE_DEVELOPMENT=1>
@@ -52,6 +52,13 @@ target_link_libraries(
            OpenGL::GL)
 
 include(CopyVendorOutput)
-#copy_vendor_output("assimp;*.dll")
-copy_vendor_output("glfw;*.dll")
-copy_vendor_output("glad;*.lib")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    #copy_vendor_output("assimp;*.dll")
+    copy_vendor_output("glfw;glfw3d.dll")
+    copy_vendor_output("glad;gladd.lib")
+elseif()
+    #copy_vendor_output("assimp;*.dll")
+    copy_vendor_output("glfw;glfw3.dll")
+    copy_vendor_output("glad;glad.lib")
+endif()
