@@ -26,7 +26,7 @@ add_executable(${SANDBOX} ${SOURCE_FILES})
 set_target_properties(${SANDBOX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                             "${SANDBOX_OUTPUT_DIR}/")
 
-target_include_directories(${SANDBOX} PUBLIC "${CUSTOM_ENGINE_INCLUDE_DIR}")
+target_include_directories(${SANDBOX} PUBLIC "${CUSTOM_ENGINE_INCLUDE_DIR}/")
 
 target_link_libraries(${SANDBOX} PRIVATE ${CUSTOM_ENGINE})
 

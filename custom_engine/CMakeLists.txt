@@ -16,23 +16,23 @@ set_target_properties(
 
 target_compile_definitions(
     ${CUSTOM_ENGINE}
-    PRIVATE CENGINE_BUILD=1
+    PUBLIC $<$<BOOL:${WIN32}>:ENGINE_WINDOWS=1>
+           $<$<BOOL:${UNIX}>:ENGINE_LINUX=1>
+    PRIVATE ENGINE_BUILD=1
             GLFW_INCLUDE_NONE=1
-            $<$<CONFIG:Debug>:CENGINE_DEBUG=1>
-            $<$<CONFIG:RelWithDebInfo>:CENGINE_DEVELOPMENT=1>
-            $<$<CONFIG:Release>:CENGINE_SHIP=1>
-            $<$<PLATFORM_ID:Linux>:CENGINE_LINUX=1>
-            $<$<PLATFORM_ID:Windows>:CENGINE_WINDOWS=1>)
+            $<$<CONFIG:Debug>:ENGINE_DEBUG=1>
+            $<$<CONFIG:RelWithDebInfo>:ENGINE_DEVELOPMENT=1>
+            $<$<CONFIG:Release>:ENGINE_SHIP=1>)
 
 target_include_directories(
     ${CUSTOM_ENGINE}
     PUBLIC "${CUSTOM_ENGINE_SRC_DIR}/"
-           "${CUSTOM_ENGINE_SRC_DIR}/custom_engine/"
-           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/assimp/include"
-           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glad/include"
-           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glfw/include"
+           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/assimp/include/"
+           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glad/include/"
+           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glfw/include/"
+           "${CUSTOM_ENGINE_ROOT_DIR}/vendor/spdlog/include/"
            "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glm/"
-           #"${CUSTOM_ENGINE_ROOT_DIR}/vendor/googletest/googletest/include"
+           #"${CUSTOM_ENGINE_ROOT_DIR}/vendor/googletest/googletest/include/"
            "${CUSTOM_ENGINE_ROOT_DIR}/vendor/stb_image/")
 
 include(SetVendorOutput)

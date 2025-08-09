@@ -1,11 +1,11 @@
 #pragma once
 
-#if defined(CENGINE_WINDOWS)
-#ifdef CENGINE_BUILD
-#define CENGINE_API __declspec(dllexport)
+#if defined(ENGINE_WINDOWS)
+#ifdef ENGINE_BUILD
+#define ENGINE_API __declspec(dllexport)
 #else
-#define CENGINE_API __declspec(dllimport)
+#define ENGINE_API __declspec(dllimport)
 #endif
 #else
-#define CENGINE_API
+#error Custom Engine only supports Windows for now.
 #endif
