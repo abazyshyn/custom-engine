@@ -1,7 +1,5 @@
 #pragma once
 
-#include "platform/windows/macro.hpp"
-
 #include <type_traits>
 
 namespace Utils
@@ -16,7 +14,7 @@ namespace Utils
      * CopyAssignable/MoveAssignable
      */
     template <typename T>
-    class ENGINE_API CSingleton
+    class CSingleton
     {
     public:
         /**

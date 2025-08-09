@@ -16,18 +16,17 @@ set_target_properties(
 
 target_compile_definitions(
     ${CUSTOM_ENGINE}
+    PUBLIC $<$<BOOL:${WIN32}>:ENGINE_WINDOWS=1>
+           $<$<BOOL:${UNIX}>:ENGINE_LINUX=1>
     PRIVATE ENGINE_BUILD=1
             GLFW_INCLUDE_NONE=1
             $<$<CONFIG:Debug>:ENGINE_DEBUG=1>
             $<$<CONFIG:RelWithDebInfo>:ENGINE_DEVELOPMENT=1>
-            $<$<CONFIG:Release>:ENGINE_SHIP=1>
-            $<$<PLATFORM_ID:Linux>:ENGINE_LINUX=1>
-            $<$<PLATFORM_ID:Windows>:ENGINE_WINDOWS=1>)
+            $<$<CONFIG:Release>:ENGINE_SHIP=1>)
 
 target_include_directories(
     ${CUSTOM_ENGINE}
     PUBLIC "${CUSTOM_ENGINE_SRC_DIR}/"
-           "${CUSTOM_ENGINE_SRC_DIR}/custom_engine/"
            "${CUSTOM_ENGINE_ROOT_DIR}/vendor/assimp/include/"
            "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glad/include/"
            "${CUSTOM_ENGINE_ROOT_DIR}/vendor/glfw/include/"

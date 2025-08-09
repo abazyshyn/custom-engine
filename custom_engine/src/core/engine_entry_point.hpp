@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 
+#if defined(ENGINE_WINDOWS)
+
 extern Engine::CApplication &Engine::CreateApplication();
 
 /**
@@ -19,3 +21,5 @@ int main(int argc, char **argv)
 
     return EXIT_SUCCESS;
 }
+
+#endif

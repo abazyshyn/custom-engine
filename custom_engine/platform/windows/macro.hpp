@@ -7,5 +7,5 @@
 #define ENGINE_API __declspec(dllimport)
 #endif
 #else
-#define ENGINE_API
+#error Custom Engine only supports Windows for now.
 #endif
