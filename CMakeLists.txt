@@ -38,6 +38,7 @@ include(AddGitSubmodule)
 add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/assimp")
 add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/glfw")
 add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/glm")
+add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/spdlog")
 #add_git_submodule("${CUSTOM_ENGINE_ROOT_DIR}/vendor/googletest")
 
 add_subdirectory("${CUSTOM_ENGINE_ROOT_DIR}/vendor/glad")
