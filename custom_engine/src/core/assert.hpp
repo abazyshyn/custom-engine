@@ -14,7 +14,7 @@
  */
 #define DEBUG_BREAK raise(SIGTRAP)
 
-#elif defined(ENGINE_WINDOWS) // LAB_LINUX
+#elif defined(ENGINE_WINDOWS)
 
 /**
  * @brief Macro for braking on a line where assertion fails
