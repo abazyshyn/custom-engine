@@ -9,11 +9,9 @@ namespace Engine
 
     void CApplication::Run()
     {
-        ENGINE_ASSERT(0);
-
         for (;;)
         {
-            std::cout << "Engine is running" << std::endl;
+            ENGINE_INFO_LOG("Engine is running");
         }
     }
 
