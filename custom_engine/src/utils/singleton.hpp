@@ -1,5 +1,6 @@
 #pragma once
 
+#include "src/core/assert.hpp"
 #include <type_traits>
 
 namespace Utils
@@ -26,7 +27,7 @@ namespace Utils
         {
             const bool expr = std::is_base_of<CSingleton, T>::value;
 
-            // ENGINE_ASSERT(expr);
+            ENGINE_ASSERT(expr);
 
             static T instance;
             return instance;
