@@ -30,3 +30,6 @@
 // #include <gtest/gtest.h>
 
 #endif // defined(CENGINE_DEBUG) || defined(CENGINE_DEVELOPMENT)
+
+#include "src/core/log.hpp"
+#include "src/core/assert.hpp"
