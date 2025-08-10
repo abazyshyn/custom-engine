@@ -39,7 +39,7 @@
         DEBUG_BREAK;                                                                                                                    \
     }
 
-#else // defined(LAB_DEBUG) || defined(LAB_DEVELOPMENT)
+#else // defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
 
 /**
  * @brief Macro that evaluates to nothing
@@ -49,6 +49,6 @@
 /**
  * @brief Macro that evaluates to nothing
  */
-#define LAB_ASSERT(expr)
+#define ENGINE_ASSERT(expr)
 
 #endif // defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)

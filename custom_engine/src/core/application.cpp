@@ -2,17 +2,24 @@
 
 #include "application.hpp" // target
 
-#include "assert.hpp"
+#include "src/core/window.hpp"
+
+#include <glad/glad.h>
 
 namespace Engine
 {
 
     void CApplication::Run()
     {
-        for (;;)
+        for (; m_Window.m_IsRunning;)
         {
-            ENGINE_INFO_LOG("Engine is running");
+            m_Window.OnUpdate();
         }
+    }
+
+    CApplication::CApplication()
+        : m_Window(CWindow::GetInstance())
+    {
     }
 
 } // namespace Engine
