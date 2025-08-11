@@ -1,6 +1,5 @@
 #pragma once
 
-#include "src/core/assert.hpp"
 #include <type_traits>
 
 namespace Utils
@@ -22,12 +21,16 @@ namespace Utils
          * @brief Returns the only one existing instance of type T
          *
          * @return Instance
+         * @throw Runtime error when provided type is not base of CSingleton
          */
         static T &GetInstance()
         {
             const bool expr = std::is_base_of<CSingleton, T>::value;
 
-            ENGINE_ASSERT(expr);
+            if (!expr)
+            {
+                throw std::runtime_error("Provided type is not base of CSingleton");
+            }
 
             static T instance;
             return instance;
