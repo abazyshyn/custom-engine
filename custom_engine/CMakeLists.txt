@@ -38,7 +38,7 @@ target_include_directories(
 include(SetVendorOutput)
 set_vendor_output("glad")
 set_vendor_output("glfw")
-#set_vendor_output("assimp")
+set_vendor_output("assimp")
 
 target_precompile_headers(${CUSTOM_ENGINE} PRIVATE
                           "${CUSTOM_ENGINE_SRC_DIR}/pch.hpp")
@@ -46,7 +46,7 @@ target_precompile_headers(${CUSTOM_ENGINE} PRIVATE
 target_link_libraries(
     ${CUSTOM_ENGINE}
     PUBLIC glfw
-           #assimp
+           assimp
            glad
            #gtest
            OpenGL::GL)
@@ -54,11 +54,11 @@ target_link_libraries(
 include(CopyVendorOutput)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    #copy_vendor_output("assimp;*.lib")
+    copy_vendor_output("assimp;assimp-vc143-mtd.lib")
     copy_vendor_output("glfw;glfw3d.lib")
     copy_vendor_output("glad;gladd.lib")
 elseif()
-    #copy_vendor_output("assimp;*.lib")
+    copy_vendor_output("assimp;assimp-vc143-mt.lib")
     copy_vendor_output("glfw;glfw3.lib")
     copy_vendor_output("glad;glad.lib")
 endif()

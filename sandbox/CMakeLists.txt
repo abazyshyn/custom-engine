@@ -30,6 +30,12 @@ target_include_directories(${SANDBOX} PUBLIC "${CUSTOM_ENGINE_INCLUDE_DIR}/")
 
 target_link_libraries(${SANDBOX} PRIVATE ${CUSTOM_ENGINE})
 
+# fmt bug
+if (MSVC)
+    target_compile_options(${CUSTOM_ENGINE} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/utf-8>)
+    target_compile_options(${SANDBOX} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/utf-8>)
+endif()
+
 # Copying custom_engine dll
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CUSTOM_ENGINE_DLL "${CUSTOM_ENGINE_OUTPUT_DIR}/custom_engined.dll")

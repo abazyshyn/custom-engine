@@ -101,8 +101,8 @@ namespace Engine
             char *pErrorMessage = static_cast<char *>(alloca(messageLength * sizeof(char)));
             glGetProgramInfoLog(m_ProgramId, messageLength, &messageLength, pErrorMessage);
 
-            ENGINE_TRACE_LOG("Shader program linking error.",
-                             "\nMessage: ", pErrorMessage);
+            ENGINE_CRITICAL_LOG("Shader program linking error.",
+                                "\nMessage: ", pErrorMessage);
 
             ENGINE_ASSERT(0);
         }
@@ -120,9 +120,8 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (!file.is_open())
         {
-            ENGINE_TRACE_LOG(
-                "Failed to open the source.",
-                "\nShader source: ", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to open the source.",
+                                "\nShader source: ", m_ShaderName);
             ENGINE_ASSERT(!file.is_open());
         }
 #endif
@@ -143,9 +142,8 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (file.is_open())
         {
-            ENGINE_TRACE_LOG(
-                "Failed to close the source.",
-                "\nShader source: ", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to close the source.",
+                                "\nShader source: ", m_ShaderName);
             ENGINE_ASSERT(file.is_open());
         }
 #endif
@@ -175,8 +173,7 @@ namespace Engine
             }
             default:
             {
-                ENGINE_TRACE_LOG(
-                    "Detected unsupported shader type.");
+                ENGINE_CRITICAL_LOG("Detected unsupported shader type.");
                 ENGINE_ASSERT(0);
             }
         }
@@ -201,12 +198,10 @@ namespace Engine
             char *pErrorMessage = static_cast<char *>(alloca(messageLength * sizeof(char)));
             glGetShaderInfoLog(shaderId, messageLength, &messageLength, pErrorMessage);
 
-            ENGINE_TRACE_LOG(
-                (shaderType == GL_VERTEX_SHADER ? "Vertex shader" : "Fragment shader"),
-                " failed to compile.",
-                "\nShader source: ", m_ShaderName,
-                "\nMessage: ", pErrorMessage);
-
+            ENGINE_CRITICAL_LOG((shaderType == GL_VERTEX_SHADER ? "Vertex shader" : "Fragment shader"),
+                                " failed to compile.",
+                                "\nShader source: ", m_ShaderName,
+                                "\nMessage: ", pErrorMessage);
             ENGINE_ASSERT(0);
         }
 #endif
@@ -231,10 +226,9 @@ namespace Engine
         }
         else
         {
-            ENGINE_TRACE_LOG(
-                "Failed to create shader program.",
-                "\nUnknown shader type was detected.\n",
-                m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to create shader program.",
+                                "\nUnknown shader type was detected.\n",
+                                m_ShaderName);
             ENGINE_ASSERT(0);
         }
 
@@ -265,9 +259,8 @@ namespace Engine
     {
         if (ct_UniformLocation == -1)
         {
-            ENGINE_TRACE_LOG(
-                "Shader uniform cannot find the location.",
-                "\nUniform name: ", ct_UniformName);
+            ENGINE_CRITICAL_LOG("Shader uniform cannot find the location.",
+                                "\nUniform name: ", ct_UniformName);
             ENGINE_ASSERT(0);
             throw std::runtime_error("Shader uniform cannot find the location.");
         }

@@ -1,7 +1,12 @@
 #pragma once
 
+// Logging system
 #include "src/core/log.hpp"
-#include "src/core/application.hpp"
 
-// Entry point
-#include "src/core/engine_entry_point.hpp"
+// Application
+#include "src/core/application.hpp"
+#include "src/core/window.hpp"
+
+// Scene related
+#include "src/scene/scene.hpp"
+#include "src/scene/fly_camera.hpp"
