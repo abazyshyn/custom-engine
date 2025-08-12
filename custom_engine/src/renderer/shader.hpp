@@ -1,5 +1,8 @@
 #pragma once
 
+#include "platform/windows/macro.hpp"
+#include <filesystem>
+
 namespace Engine
 {
 
@@ -19,7 +22,7 @@ namespace Engine
      *
      * Controls shader program
      */
-    class CShader
+    class ENGINE_API CShader
     {
     public:
         explicit CShader(const std::vector<std::filesystem::path> &ct_ShaderPaths);

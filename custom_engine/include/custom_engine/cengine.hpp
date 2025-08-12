@@ -10,3 +10,14 @@
 // Scene related
 #include "src/scene/scene.hpp"
 #include "src/scene/fly_camera.hpp"
+#include "src/scene/entity.hpp"
+
+// Renderer
+#include "src/renderer/framebuffer.hpp"
+#include "src/renderer/uniform_buffer.hpp"
+#include "src/renderer/shader.hpp"
+
+// glm
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>

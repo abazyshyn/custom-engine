@@ -6,6 +6,9 @@ namespace Engine
 {
     // Forward declaration
     class CWindow;
+    class CShader;
+    class CEditorCamera;
+    class CEntity;
     // class CSkybox;
 
     class ENGINE_API CScene
@@ -23,7 +26,14 @@ namespace Engine
 
     protected:
         CWindow &m_Window;
+        std::unique_ptr<CShader> m_DebugNormalShader;
         // CSkybox &m_Skybox;
+
+        void DrawDebugNormals(const glm::mat4 &ct_ModelMatrix, const glm::mat4 &ct_ViewMatrix,
+                              std::unique_ptr<CEditorCamera> ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_Entity);
+
+    private:
+        virtual void Init() = 0;
     };
 
 } // namespace Engine

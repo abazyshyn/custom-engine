@@ -1,9 +1,11 @@
 #pragma once
 
+#include "platform/windows/macro.hpp"
+
 namespace Engine
 {
     // TODO: write documentation
-    class CUniformBuffer
+    class ENGINE_API CUniformBuffer
     {
     public:
         ~CUniformBuffer();

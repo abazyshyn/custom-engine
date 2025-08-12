@@ -26,13 +26,15 @@ add_executable(${SANDBOX} ${SOURCE_FILES})
 set_target_properties(${SANDBOX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                             "${SANDBOX_OUTPUT_DIR}/")
 
-target_include_directories(${SANDBOX} PUBLIC "${CUSTOM_ENGINE_INCLUDE_DIR}/")
+target_include_directories(${SANDBOX} PUBLIC "${SANDBOX_ROOT_DIR}/src"
+                                             "${CUSTOM_ENGINE_INCLUDE_DIR}/")
 
 target_link_libraries(${SANDBOX} PRIVATE ${CUSTOM_ENGINE})
 
 # fmt bug
-if (MSVC)
-    target_compile_options(${CUSTOM_ENGINE} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/utf-8>)
+if(MSVC)
+    target_compile_options(${CUSTOM_ENGINE}
+                           PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/utf-8>)
     target_compile_options(${SANDBOX} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/utf-8>)
 endif()
 
