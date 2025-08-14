@@ -27,9 +27,9 @@ namespace Engine
         UpdateCameraVectors();
     }
 
-    void CEditorCamera::CameraKeyboardInput(GLFWwindow *t_pWindow, float t_DeltaTime)
+    void CEditorCamera::CameraKeyboardInput(GLFWwindow *t_pWindow, const float ct_DeltaTime)
     {
-        const float fCameraSpeed = 1.0f * t_DeltaTime;
+        const float fCameraSpeed = 1.0f * ct_DeltaTime;
 
         if (glfwGetKey(t_pWindow, GLFW_KEY_W) == GLFW_PRESS)
         {

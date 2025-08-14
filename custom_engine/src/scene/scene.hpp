@@ -6,6 +6,9 @@ namespace Engine
 {
     // Forward declaration
     class CWindow;
+    class CShader;
+    class CEditorCamera;
+    class CEntity;
     // class CSkybox;
 
     class ENGINE_API CScene
@@ -19,11 +22,18 @@ namespace Engine
          *
          * @param[in] t_DeltaTime Time taken to render last frame
          */
-        virtual void OnUpdate(float t_DeltaTime) = 0;
+        virtual void OnUpdate(const float ct_DeltaTime) = 0;
 
     protected:
         CWindow &m_Window;
+        std::unique_ptr<CShader> m_DebugNormalShader;
         // CSkybox &m_Skybox;
+
+        void DrawDebugNormals(const glm::mat4 &ct_ModelMatrix, const glm::mat4 &ct_ViewMatrix,
+                              const std::shared_ptr<CEditorCamera> &ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_pEntity);
+
+    private:
+        virtual void Init() = 0;
     };
 
 } // namespace Engine

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mesh.hpp"
+#include "platform/windows/macro.hpp"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -19,7 +20,7 @@ namespace Engine
      *
      * Controls model
      */
-    class CModel
+    class ENGINE_API CModel
     {
     public:
         explicit CModel(const std::string &ct_ModelPath);

@@ -19,8 +19,6 @@ namespace OpenGL
                        uint32_t ct_CountVBO, const uint32_t *ct_VBO,
                        uint32_t ct_CountIBO, const uint32_t *ct_IBO);
 
-#if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
-
     /**
      * @brief Enables OpenGL debugging
      */
@@ -41,6 +39,10 @@ namespace OpenGL
                                              const GLchar *ct_Message,
                                              const void *ct_UserParam);
 
-#endif // defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
-
 } // namespace OpenGL
+
+#if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
+
+#define OPENGL_ENABLE_DEBUG ::OpenGL::EnableDebug()
+
+#endif // defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
