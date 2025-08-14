@@ -22,7 +22,7 @@ namespace Engine
          *
          * @param[in] t_DeltaTime Time taken to render last frame
          */
-        virtual void OnUpdate(float t_DeltaTime) = 0;
+        virtual void OnUpdate(const float ct_DeltaTime) = 0;
 
     protected:
         CWindow &m_Window;
@@ -30,7 +30,7 @@ namespace Engine
         // CSkybox &m_Skybox;
 
         void DrawDebugNormals(const glm::mat4 &ct_ModelMatrix, const glm::mat4 &ct_ViewMatrix,
-                              std::unique_ptr<CEditorCamera> ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_Entity);
+                              const std::shared_ptr<CEditorCamera> &ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_pEntity);
 
     private:
         virtual void Init() = 0;

@@ -16,12 +16,12 @@ namespace Sandbox
 
         CBasicLightScene();
 
-        void OnUpdate(float t_DeltaTime) override;
+        void OnUpdate(const float ct_DeltaTime) override;
 
     private:
         Engine::CUniformBuffer m_UBO;
 
-        std::unique_ptr<Engine::CFlyCamera> m_pFlyCamera;
+        std::shared_ptr<Engine::CFlyCamera> m_pFlyCamera;
         std::unique_ptr<Engine::CShader> m_pBasicShader; // TODO: temp
         std::unique_ptr<Engine::CShader> m_pBasicLightingShader;
 

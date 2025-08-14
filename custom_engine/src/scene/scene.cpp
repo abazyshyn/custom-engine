@@ -3,7 +3,6 @@
 #include "scene.hpp" // target
 
 #include "src/core/window.hpp"
-#include "src/renderer/shader.hpp"
 #include "src/renderer/camera.hpp"
 #include "src/renderer/editor_camera.hpp"
 #include "src/scene/entity.hpp"
@@ -22,13 +21,13 @@ namespace Engine
     }
 
     void CScene::DrawDebugNormals(const glm::mat4 &ct_ModelMatrix, const glm::mat4 &ct_ViewMatrix,
-                                  std::unique_ptr<CEditorCamera> ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_Entity)
+                                  const std::shared_ptr<CEditorCamera> &ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_pEntity)
     {
         m_DebugNormalShader->Bind();
         m_DebugNormalShader->SetUniformMatrix4fv("u_ModelMatrix", ct_ModelMatrix);
         m_DebugNormalShader->SetUniformMatrix4fv("u_ViewMatrix", ct_ViewMatrix);
         m_DebugNormalShader->SetUniformMatrix4fv("u_ProjectionMatrix", ct_pEditorCamera->CalculatePerspectiveProjectionMatrix(m_Window));
-        ct_Entity->Draw(*m_DebugNormalShader);
+        ct_pEntity->Draw(*m_DebugNormalShader);
     }
 
 } // namespace Engine

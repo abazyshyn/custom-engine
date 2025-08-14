@@ -40,7 +40,7 @@ set_vendor_output("glad")
 set_vendor_output("glfw")
 set_vendor_output("assimp")
 
-target_precompile_headers(${CUSTOM_ENGINE} PRIVATE
+target_precompile_headers(${CUSTOM_ENGINE} PUBLIC
                           "${CUSTOM_ENGINE_SRC_DIR}/pch.hpp")
 
 target_link_libraries(

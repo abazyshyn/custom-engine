@@ -6,6 +6,7 @@
 namespace Engine
 {
     class CWindow;
+    class CRenderer;
 
     /**
      * @brief Implementation of the application
@@ -29,13 +30,13 @@ namespace Engine
 
     private:
         CWindow &m_Window;
-        // CRenderer &m_Renderer;
-        // float m_LastFrameTime;
-        // unsigned char _pad[4] = {}; // Explicit padding
+        CRenderer &m_Renderer;
+        float m_LastFrameTime;
+        unsigned char _pad[4] = {}; // Explicit padding
 
         CApplication();
 
-        // float CalculateDeltaTime();
+        float CalculateDeltaTime();
     };
 
     /**

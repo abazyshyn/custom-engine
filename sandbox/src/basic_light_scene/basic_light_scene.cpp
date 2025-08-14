@@ -1,5 +1,5 @@
 #include <cengine.hpp>
-#include <memory>
+#include <pch.hpp>
 
 #include "basic_light_scene.hpp" // target
 
@@ -8,8 +8,9 @@
 
 namespace Sandbox
 {
+
     CBasicLightScene::CBasicLightScene()
-        : m_pFlyCamera(std::make_unique<Engine::CFlyCamera>()),
+        : m_pFlyCamera(std::make_shared<Engine::CFlyCamera>()),
           m_pBasicShader(std::make_unique<Engine::CShader>(
               std::vector<std::filesystem::path>{Constants::SANDBOX_BASE_SHADERS_PATH + "gl_scene.vert",
                                                  Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic.frag"})),
@@ -21,10 +22,10 @@ namespace Sandbox
         Init();
     }
 
-    void CBasicLightScene::OnUpdate(float t_DeltaTime)
+    void CBasicLightScene::OnUpdate(const float ct_DeltaTime)
     {
         // Update camera movement
-        m_pFlyCamera->CameraKeyboardInput(m_Window.GetWindowPointer(), t_DeltaTime);
+        m_pFlyCamera->CameraKeyboardInput(m_Window.GetWindowPointer(), ct_DeltaTime);
         m_pFlyCamera->CameraMouseMovementInput(m_Window.GetWindowPointer());
 
         // Set view matrix to the uniform block
@@ -39,7 +40,7 @@ namespace Sandbox
 
         glm::vec3 lightPosition = glm::vec3(glm::sin(glfwGetTime()) * 2.0f, 0.3f, 0.0f);
 
-        for (const std::shared_ptr<Engine::CEntity> &entity : m_LightCastEntities)
+        for (const std::shared_ptr<Engine::CEntity> &pEntity : m_LightCastEntities)
         {
             glm::mat4 modelMatrix(1.0f);
             modelMatrix = glm::translate(modelMatrix, lightPosition);
@@ -47,18 +48,14 @@ namespace Sandbox
 
             m_pBasicShader->SetUniformMatrix4fv("u_ModelMatrix", modelMatrix);
 
-            entity->Draw(*m_pBasicShader);
+            pEntity->Draw(*m_pBasicShader);
 
-            // this->m_DebugNormalShader->Bind();
-            // this->m_DebugNormalShader->SetUniformMatrix4fv("u_ModelMatrix", modelMatrix);
-            // this->m_DebugNormalShader->SetUniformMatrix4fv("u_ViewMatrix", ct_ViewMatrix);
-            // this->m_DebugNormalShader->SetUniformMatrix4fv("u_ProjectionMatrix", m_Camera.CalculatePerspectiveProjectionMatrix(m_Window));
-            // entity->Draw(m_DebugNormalShader);
+            this->DrawDebugNormals(modelMatrix, viewMatrix, m_pFlyCamera, pEntity);
         }
 
         m_pBasicLightingShader->Bind();
 
-        for (const std::shared_ptr<Engine::CEntity> &entity : m_Entities)
+        for (const std::shared_ptr<Engine::CEntity> &pEntity : m_Entities)
         {
             glm::mat4 modelMatrix(1.0f);
             modelMatrix = glm::scale(modelMatrix, glm::vec3(0.002f));
@@ -70,9 +67,9 @@ namespace Sandbox
             m_pBasicLightingShader->SetUniformMatrix3fv("u_NormalMatrix", normalMatrix);
             m_pBasicLightingShader->SetUniformMatrix4fv("u_ModelMatrix", modelMatrix);
 
-            entity->Draw(*m_pBasicLightingShader);
+            pEntity->Draw(*m_pBasicLightingShader);
 
-            // this->DrawDebugNormals(modelMatrix, viewMatrix, m_pFlyCamera, );
+            this->DrawDebugNormals(modelMatrix, viewMatrix, m_pFlyCamera, pEntity);
         }
         // ================================================================================
     }
