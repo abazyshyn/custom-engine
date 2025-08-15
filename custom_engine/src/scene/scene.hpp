@@ -1,12 +1,12 @@
 #pragma once
 
 #include "platform/windows/macro.hpp"
+#include "src/renderer/shader.hpp"
 
 namespace Engine
 {
     // Forward declaration
     class CWindow;
-    class CShader;
     class CEditorCamera;
     class CEntity;
     // class CSkybox;

@@ -13,6 +13,7 @@
 #include "src/scene/entity.hpp"
 
 // Renderer
+#include "src/renderer/renderer.hpp"
 #include "src/renderer/framebuffer.hpp"
 #include "src/renderer/uniform_buffer.hpp"
 #include "src/renderer/shader.hpp"

@@ -5,6 +5,7 @@
 
 namespace Engine
 {
+    class CScene;
     class CWindow;
     class CRenderer;
 
@@ -27,6 +28,12 @@ namespace Engine
          * @brief Main loop
          */
         void Run();
+
+        // TODO: docs
+        static void PushScenesToRenderer(const std::shared_ptr<CScene> &ct_pScene);
+
+        // TODO: docs
+        static void PushScenesToRenderer(const std::vector<std::shared_ptr<CScene>> &ct_Scenes);
 
     private:
         CWindow &m_Window;

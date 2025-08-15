@@ -1,7 +1,7 @@
 #pragma once
 
 #include "src/utils/singleton.hpp"
-// #include "platform/windows/macro.hpp" TODO
+#include "platform/windows/macro.hpp"
 
 namespace Engine
 {
@@ -17,7 +17,7 @@ namespace Engine
      * Neither CopyConstructible/MoveConstructible nor
      * CopyAssignable/MoveAssignable
      */
-    class CRenderer final : public Utils::CSingleton<CRenderer>
+    class ENGINE_API CRenderer final : public Utils::CSingleton<CRenderer>
     {
     public:
         friend class Utils::CSingleton<CRenderer>;
@@ -36,7 +36,13 @@ namespace Engine
          */
         void OnRender(const float ct_DeltaTime, const std::vector<std::shared_ptr<CScene>> &ct_Scenes);
 
+        void SetScenes(const std::shared_ptr<CScene> &ct_pScene) { m_Scenes.emplace_back(ct_pScene); }
+
+        void SetScenes(const std::vector<std::shared_ptr<CScene>> &ct_Scenes) { m_Scenes.insert(m_Scenes.end(), ct_Scenes.begin(), ct_Scenes.end()); }
+
     private:
+        std::vector<std::shared_ptr<CScene>> m_Scenes;
+
         CRenderer();
     };
 
