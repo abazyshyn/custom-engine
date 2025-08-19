@@ -27,9 +27,7 @@ namespace Engine
     {
         const int32_t uniformLocation = UniformFromCache(ct_UniformName);
 
-        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...",
-                         "\nUniform name: ", ct_UniformName,
-                         "\nLocation: ", uniformLocation);
+        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...\nUniform name: {0}\nLocation: {1}", ct_UniformName, uniformLocation);
 
         glUniform1f(uniformLocation, ct_Value);
     }
@@ -38,9 +36,7 @@ namespace Engine
     {
         const int32_t uniformLocation = UniformFromCache(ct_UniformName);
 
-        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...",
-                         "\nUniform name: ", ct_UniformName,
-                         "\nLocation: ", uniformLocation);
+        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...\nUniform name: {0}\nLocation: {1}", ct_UniformName, uniformLocation);
 
         glUniform3fv(uniformLocation, 1, glm::value_ptr(ct_Vector));
     }
@@ -49,9 +45,7 @@ namespace Engine
     {
         const int32_t uniformLocation = UniformFromCache(ct_UniformName);
 
-        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...",
-                         "\nUniform name: ", ct_UniformName,
-                         "\nLocation: ", uniformLocation);
+        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...\nUniform name: {0}\nLocation: {1}", ct_UniformName, uniformLocation);
 
         glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(ct_Matrix));
     }
@@ -60,9 +54,7 @@ namespace Engine
     {
         const int32_t uniformLocation = UniformFromCache(ct_UniformName);
 
-        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...",
-                         "\nUniform name: ", ct_UniformName,
-                         "\nLocation: ", uniformLocation);
+        ENGINE_TRACE_LOG("Setting the uniform matrix4fv...\nUniform name: {0}\nLocation: {1}", ct_UniformName, uniformLocation);
 
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(ct_Matrix));
     }
@@ -78,7 +70,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
             m_ShaderName = path.substr(path.find_last_of('/') + 1, path.find_last_of('.'));
 
-            ENGINE_TRACE_LOG("Processing the shader...\n", m_ShaderName);
+            ENGINE_WARN_LOG("Processing the shader {0}", m_ShaderName);
 #endif
 
             std::string shaderSource = ReadFromSource(path);
@@ -102,8 +94,7 @@ namespace Engine
             char *pErrorMessage = static_cast<char *>(alloca(messageLength * sizeof(char)));
             glGetProgramInfoLog(m_ProgramId, messageLength, &messageLength, pErrorMessage);
 
-            ENGINE_CRITICAL_LOG("Shader program linking error.",
-                                "\nMessage: ", pErrorMessage);
+            ENGINE_CRITICAL_LOG("Shader program linking error.\n{0}", pErrorMessage);
 
             ENGINE_ASSERT(0);
         }
@@ -121,8 +112,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (!file.is_open())
         {
-            ENGINE_CRITICAL_LOG("Failed to open the source.",
-                                "\nShader source: ", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to open the source.\nShader source: {0}", m_ShaderName);
             ENGINE_ASSERT(!file.is_open());
         }
 #endif
@@ -143,8 +133,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (file.is_open())
         {
-            ENGINE_CRITICAL_LOG("Failed to close the source.",
-                                "\nShader source: ", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to close the source.\nShader source: {0}", m_ShaderName);
             ENGINE_ASSERT(file.is_open());
         }
 #endif
@@ -199,10 +188,8 @@ namespace Engine
             char *pErrorMessage = static_cast<char *>(alloca(messageLength * sizeof(char)));
             glGetShaderInfoLog(shaderId, messageLength, &messageLength, pErrorMessage);
 
-            ENGINE_CRITICAL_LOG((shaderType == GL_VERTEX_SHADER ? "Vertex shader" : "Fragment shader"),
-                                " failed to compile.",
-                                "\nShader source: ", m_ShaderName,
-                                "\nMessage: ", pErrorMessage);
+            ENGINE_CRITICAL_LOG("{0} failed to compile.\nShader source: {1}\nMessage: {2}",
+                                (shaderType == GL_VERTEX_SHADER ? "Vertex shader" : "Fragment shader"), m_ShaderName, pErrorMessage);
             ENGINE_ASSERT(0);
         }
 #endif
@@ -227,9 +214,7 @@ namespace Engine
         }
         else
         {
-            ENGINE_CRITICAL_LOG("Failed to create shader program.",
-                                "\nUnknown shader type was detected.\n",
-                                m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to create shader program.\nUnknown shader type was detected.\n{0}", m_ShaderName);
             ENGINE_ASSERT(0);
         }
 
@@ -260,8 +245,7 @@ namespace Engine
     {
         if (ct_UniformLocation == -1)
         {
-            ENGINE_CRITICAL_LOG("Shader uniform cannot find the location.",
-                                "\nUniform name: ", ct_UniformName);
+            ENGINE_CRITICAL_LOG("Shader uniform cannot find the location.\nUniform name: {0}", ct_UniformName);
             ENGINE_ASSERT(0);
             throw std::runtime_error("Shader uniform cannot find the location.");
         }
