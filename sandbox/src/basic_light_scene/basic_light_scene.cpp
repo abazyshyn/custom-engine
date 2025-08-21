@@ -17,7 +17,7 @@ namespace Sandbox
           m_pBasicLightingShader(std::make_unique<Engine::CShader>(
               std::vector<std::filesystem::path>{Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic_lighting.vert",
                                                  Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic_lighting.frag"})),
-          m_Entities({std::make_shared<CSponzaEntity>()})
+          m_Entities({std::move(std::make_shared<CSponzaEntity>())})
     {
         Init();
     }

@@ -34,31 +34,37 @@ namespace Engine
         if (glfwGetKey(t_pWindow, GLFW_KEY_W) == GLFW_PRESS)
         {
             m_CameraPositionVector += glm::normalize(m_CameraFrontVector) * fCameraSpeed;
-            ENGINE_INFO_LOG("\nW keys pressed.",
-                            "\nX: ", m_CameraPositionVector.x,
-                            "\nY: ", m_CameraPositionVector.y,
-                            "\nZ: ", m_CameraPositionVector.z);
+            ENGINE_INFO_LOG("\nW key pressed.\nX: {0}\nY: {1}\nZ: {2}",
+                            m_CameraPositionVector.x,
+                            m_CameraPositionVector.y,
+                            m_CameraPositionVector.z);
         }
 
         if (glfwGetKey(t_pWindow, GLFW_KEY_S) == GLFW_PRESS)
         {
             m_CameraPositionVector -= glm::normalize(m_CameraFrontVector) * fCameraSpeed;
-            ENGINE_INFO_LOG("\nS keys pressed.",
-                            "\nX: ", m_CameraPositionVector.x,
-                            "\nY: ", m_CameraPositionVector.y,
-                            "\nZ: ", m_CameraPositionVector.z);
+            ENGINE_INFO_LOG("\nS key pressed.\nX: {0}\nY: {1}\nZ: {2}",
+                            m_CameraPositionVector.x,
+                            m_CameraPositionVector.y,
+                            m_CameraPositionVector.z);
         }
 
         if (glfwGetKey(t_pWindow, GLFW_KEY_A) == GLFW_PRESS)
         {
             m_CameraPositionVector -= m_CameraRightVector * fCameraSpeed;
-            ENGINE_INFO_LOG("\nA keys pressed.");
+            ENGINE_INFO_LOG("\nA key pressed.\nX: {0}\nY: {1}\nZ: {2}",
+                            m_CameraPositionVector.x,
+                            m_CameraPositionVector.y,
+                            m_CameraPositionVector.z);
         }
 
         if (glfwGetKey(t_pWindow, GLFW_KEY_D) == GLFW_PRESS)
         {
             m_CameraPositionVector += m_CameraRightVector * fCameraSpeed;
-            ENGINE_INFO_LOG("\nD keys pressed.");
+            ENGINE_INFO_LOG("\nD key pressed.\nX: {0}\nY: {1}\nZ: {2}",
+                            m_CameraPositionVector.x,
+                            m_CameraPositionVector.y,
+                            m_CameraPositionVector.z);
         }
     }
 

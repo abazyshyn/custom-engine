@@ -153,10 +153,8 @@ namespace OpenGL
             }
         }
 
-        ENGINE_CRITICAL_LOG("OpenGL Debug Message:",
-                            "\nSource: ", source, "\nType: ", type,
-                            "\nID: ", t_Id, "\nSeverity: ", severity,
-                            "\nMessage: ", ct_Message);
+        ENGINE_CRITICAL_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                            source, type, t_Id, severity, ct_Message);
         ENGINE_ASSERT((severity == "HIGH" || severity == "MEDIUM" || severity == "LOW"));
     }
 

@@ -70,7 +70,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
             m_ShaderName = path.substr(path.find_last_of('/') + 1, path.find_last_of('.'));
 
-            ENGINE_WARN_LOG("Processing the shader {0}", m_ShaderName);
+            ENGINE_INFO_LOG("Processing the shader: {0}", m_ShaderName);
 #endif
 
             std::string shaderSource = ReadFromSource(path);
@@ -112,7 +112,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (!file.is_open())
         {
-            ENGINE_CRITICAL_LOG("Failed to open the source.\nShader source: {0}", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to open the shader source: {0}", m_ShaderName);
             ENGINE_ASSERT(!file.is_open());
         }
 #endif
@@ -133,7 +133,7 @@ namespace Engine
 #if defined(ENGINE_DEBUG) || defined(ENGINE_DEVELOPMENT)
         if (file.is_open())
         {
-            ENGINE_CRITICAL_LOG("Failed to close the source.\nShader source: {0}", m_ShaderName);
+            ENGINE_CRITICAL_LOG("Failed to close the shader source: {0}", m_ShaderName);
             ENGINE_ASSERT(file.is_open());
         }
 #endif

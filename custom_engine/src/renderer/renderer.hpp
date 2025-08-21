@@ -27,14 +27,7 @@ namespace Engine
          *
          * @param[in] t_DeltaTime Delta time
          */
-        void OnRender(const float ct_DeltaTime, const std::shared_ptr<CScene> &ct_pScene);
-
-        /**
-         * @brief Main renderer, renders and manages all scenes
-         *
-         * @param[in] t_DeltaTime Delta time
-         */
-        void OnRender(const float ct_DeltaTime, const std::vector<std::shared_ptr<CScene>> &ct_Scenes);
+        void OnRender(const float ct_DeltaTime);
 
         void SetScenes(const std::shared_ptr<CScene> &ct_pScene) { m_Scenes.emplace_back(ct_pScene); }
 

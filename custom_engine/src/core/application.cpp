@@ -16,6 +16,7 @@ namespace Engine
             const float deltaTime = CalculateDeltaTime();
 
             m_Window.OnUpdate();
+            m_Renderer.OnRender(deltaTime);
         }
     }
 

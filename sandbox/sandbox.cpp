@@ -8,6 +8,7 @@ class CSandbox final : public Engine::CApplication
 
 Engine::CApplication &Engine::CreateApplication()
 {
+    // issue with transferring the ownership
     CSandbox::PushScenesToRenderer(std::make_shared<Sandbox::CBasicLightScene>());
 
     return CSandbox::GetInstance();

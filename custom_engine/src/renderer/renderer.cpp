@@ -10,16 +10,11 @@
 namespace Engine
 {
 
-    void CRenderer::OnRender(const float ct_DeltaTime, const std::shared_ptr<CScene> &ct_pScene)
+    void CRenderer::OnRender(const float ct_DeltaTime)
     {
-        ct_pScene->OnUpdate(ct_DeltaTime);
-    }
-
-    void CRenderer::OnRender(const float ct_DeltaTime, const std::vector<std::shared_ptr<CScene>> &ct_Scenes)
-    {
-        for (const std::shared_ptr<CScene> &pScene : ct_Scenes)
+        for (const auto &scene : m_Scenes)
         {
-            OnRender(ct_DeltaTime, pScene);
+            scene->OnUpdate(ct_DeltaTime);
         }
     }
 

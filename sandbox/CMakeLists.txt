@@ -23,6 +23,8 @@ file(
 
 add_executable(${SANDBOX} ${SOURCE_FILES})
 
+target_compile_definitions(${SANDBOX} PRIVATE SANDBOX_RESOURCES_DIR="${SANDBOX_ROOT_DIR}/res")
+
 set_target_properties(${SANDBOX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
                                             "${SANDBOX_OUTPUT_DIR}/")
 
