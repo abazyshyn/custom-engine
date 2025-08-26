@@ -43,13 +43,18 @@ endif()
 # Copying custom_engine dll
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CUSTOM_ENGINE_DLL "${CUSTOM_ENGINE_OUTPUT_DIR}/custom_engined.dll")
+    set(CUSTOM_ENGINE_PDB "${CUSTOM_ENGINE_OUTPUT_DIR}/custom_engined.pdb")
 elseif()
     set(CUSTOM_ENGINE_DLL "${CUSTOM_ENGINE_OUTPUT_DIR}/custom_engine.dll")
+    set(CUSTOM_ENGINE_PDB "${CUSTOM_ENGINE_OUTPUT_DIR}/custom_engine.pdb")
 endif()
+
 
 add_custom_command(
     TARGET ${PROJECT_NAME}
     POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CUSTOM_ENGINE_DLL}"
+            "${SANDBOX_OUTPUT_DIR}/"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CUSTOM_ENGINE_PDB}"
             "${SANDBOX_OUTPUT_DIR}/"
     COMMENT "Copying ${CUSTOM_ENGINE_DLL} to ${SANDBOX_OUTPUT_DIR}")

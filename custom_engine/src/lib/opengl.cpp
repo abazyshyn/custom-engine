@@ -129,33 +129,40 @@ namespace OpenGL
             case GL_DEBUG_SEVERITY_HIGH:
             {
                 severity = "HIGH";
+                ENGINE_CRITICAL_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                                    source, type, t_Id, severity, ct_Message);
+                ENGINE_ASSERT(0);
                 break;
             }
             case GL_DEBUG_SEVERITY_MEDIUM:
             {
                 severity = "MEDIUM";
+                ENGINE_WARN_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                                source, type, t_Id, severity, ct_Message);
                 break;
             }
             case GL_DEBUG_SEVERITY_LOW:
             {
                 severity = "LOW";
+                ENGINE_TRACE_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                                 source, type, t_Id, severity, ct_Message);
                 break;
             }
             case GL_DEBUG_SEVERITY_NOTIFICATION:
             {
                 severity = "NOTIFICATION";
+                ENGINE_INFO_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                                source, type, t_Id, severity, ct_Message);
                 break;
             }
             default:
             {
                 severity = "UNKNOWN";
+                ENGINE_TRACE_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
+                                 source, type, t_Id, severity, ct_Message);
                 break;
             }
         }
-
-        ENGINE_CRITICAL_LOG("OpenGL Debug Message:\nSource: {0}\nType: {1}\nID: {2}\nSeverity: {3}\nMessage: {4}",
-                            source, type, t_Id, severity, ct_Message);
-        ENGINE_ASSERT((severity == "HIGH" || severity == "MEDIUM" || severity == "LOW"));
     }
 
 #endif

@@ -17,7 +17,7 @@ namespace Engine
     class ENGINE_API CEntity
     {
     public:
-        explicit CEntity(const CModel &ct_Model);
+        explicit CEntity(CModel &&t_Model);
 
         virtual ~CEntity() = default;
 

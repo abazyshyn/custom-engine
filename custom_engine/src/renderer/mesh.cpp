@@ -10,8 +10,8 @@
 namespace Engine
 {
 
-    CMesh::CMesh(const std::vector<Vertex_s> &ct_Vertices, const std::vector<uint32_t> &ct_Indices,
-                 const std::vector<Texture_s> &ct_Textures, const std::string &ct_Name)
+    CMesh::CMesh(std::vector<Vertex_s> ct_Vertices, std::vector<uint32_t> ct_Indices,
+                 std::vector<Texture_s> ct_Textures, std::string ct_Name)
         : m_Vertices(ct_Vertices),
           m_Indices(ct_Indices),
           m_Textures(ct_Textures),

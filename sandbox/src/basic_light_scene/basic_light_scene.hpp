@@ -25,8 +25,8 @@ namespace Sandbox
         std::unique_ptr<Engine::CShader> m_pBasicShader; // TODO: temp
         std::unique_ptr<Engine::CShader> m_pBasicLightingShader;
 
-        std::vector<std::shared_ptr<Engine::CEntity>> m_LightCastEntities;
-        std::vector<std::shared_ptr<Engine::CEntity>> m_Entities;
+        // std::vector<std::shared_ptr<Engine::CEntity>> m_LightCastEntities;
+        std::vector<std::unique_ptr<Engine::CEntity>> m_Entities;
 
         void Init() override;
         void SetupLight();

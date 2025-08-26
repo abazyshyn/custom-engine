@@ -16,9 +16,9 @@ namespace Sandbox
                                                  Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic.frag"})),
           m_pBasicLightingShader(std::make_unique<Engine::CShader>(
               std::vector<std::filesystem::path>{Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic_lighting.vert",
-                                                 Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic_lighting.frag"})),
-          m_Entities({std::move(std::make_shared<CSponzaEntity>())})
+                                                 Constants::SANDBOX_BASE_SHADERS_PATH + "gl_basic_lighting.frag"}))
     {
+        m_Entities.emplace_back(std::make_unique<CSponzaEntity>());
         Init();
     }
 
@@ -40,22 +40,22 @@ namespace Sandbox
 
         glm::vec3 lightPosition = glm::vec3(glm::sin(glfwGetTime()) * 2.0f, 0.3f, 0.0f);
 
-        for (const std::shared_ptr<Engine::CEntity> &pEntity : m_LightCastEntities)
-        {
-            glm::mat4 modelMatrix(1.0f);
-            modelMatrix = glm::translate(modelMatrix, lightPosition);
-            modelMatrix = glm::scale(modelMatrix, glm::vec3(0.05f));
+        // for (const std::shared_ptr<Engine::CEntity> &pEntity : m_LightCastEntities)
+        //{
+        //     glm::mat4 modelMatrix(1.0f);
+        //     modelMatrix = glm::translate(modelMatrix, lightPosition);
+        //     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.05f));
 
-            m_pBasicShader->SetUniformMatrix4fv("u_ModelMatrix", modelMatrix);
+        //    m_pBasicShader->SetUniformMatrix4fv("u_ModelMatrix", modelMatrix);
 
-            pEntity->Draw(*m_pBasicShader);
+        //    pEntity->Draw(*m_pBasicShader);
 
-            this->DrawDebugNormals(modelMatrix, viewMatrix, m_pFlyCamera, pEntity);
-        }
+        //    this->DrawDebugNormals(modelMatrix, viewMatrix, m_pFlyCamera, pEntity);
+        //}
 
         m_pBasicLightingShader->Bind();
 
-        for (const std::shared_ptr<Engine::CEntity> &pEntity : m_Entities)
+        for (const std::unique_ptr<Engine::CEntity> &pEntity : m_Entities)
         {
             glm::mat4 modelMatrix(1.0f);
             modelMatrix = glm::scale(modelMatrix, glm::vec3(0.002f));

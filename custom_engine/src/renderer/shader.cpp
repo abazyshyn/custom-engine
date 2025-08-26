@@ -7,7 +7,7 @@
 namespace Engine
 {
 
-    CShader::CShader(const std::vector<std::filesystem::path> &ct_ShaderPaths)
+    CShader::CShader(std::vector<std::filesystem::path> ct_ShaderPaths)
         : m_ProgramId()
     {
         CreateShaderProgramFromSource(ct_ShaderPaths);
@@ -59,7 +59,7 @@ namespace Engine
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(ct_Matrix));
     }
 
-    void CShader::CreateShaderProgramFromSource(const std::vector<std::filesystem::path> &ct_ShaderSourcePaths)
+    void CShader::CreateShaderProgramFromSource(std::vector<std::filesystem::path> ct_ShaderSourcePaths)
     {
         m_ProgramId = glCreateProgram();
 
@@ -101,7 +101,7 @@ namespace Engine
 #endif
     }
 
-    std::string CShader::ReadFromSource(const std::string &ct_ShaderSourcePath) const
+    std::string CShader::ReadFromSource(std::string ct_ShaderSourcePath) const
     {
         std::ifstream file(ct_ShaderSourcePath);
 
@@ -141,7 +141,7 @@ namespace Engine
         return ss.str();
     }
 
-    void CShader::CompileShaderFromSource(const ShaderType_e ct_LocalShaderType, const std::string &ct_ShaderSource) const
+    void CShader::CompileShaderFromSource(const ShaderType_e ct_LocalShaderType, std::string ct_ShaderSource) const
     {
         GLenum shaderType{};
         switch (ct_LocalShaderType)
@@ -198,7 +198,7 @@ namespace Engine
         glDeleteShader(shaderId);
     }
 
-    ShaderType_e CShader::FindShaderType(const std::string &ct_ShaderPath) const
+    ShaderType_e CShader::FindShaderType(std::string ct_ShaderPath) const
     {
         if (ct_ShaderPath.find(".vert") != std::string::npos)
         {
@@ -225,7 +225,7 @@ namespace Engine
         return ENGINE_SHADER_TYPE_UNKNOWN;
     }
 
-    int32_t CShader::UniformFromCache(const std::string &ct_UniformName)
+    int32_t CShader::UniformFromCache(std::string ct_UniformName)
     {
         /**
          * Check uniform location in cache
@@ -241,7 +241,7 @@ namespace Engine
         return m_UniformCache[ct_UniformName] = uniformLocation;
     }
 
-    void CShader::IsUniformLocationValid(const std::string &ct_UniformName, const int32_t ct_UniformLocation)
+    void CShader::IsUniformLocationValid(std::string ct_UniformName, const int32_t ct_UniformLocation)
     {
         if (ct_UniformLocation == -1)
         {

@@ -137,7 +137,7 @@ namespace Engine
 
             for (size_t j = 0; j < face.mNumIndices; ++j)
             {
-                indices.emplace_back(face.mIndices[j]);
+                indices.push_back(face.mIndices[j]);
             }
         }
 
@@ -194,7 +194,7 @@ namespace Engine
 
             texture.m_TexturePath = texturePath.C_Str();
             texture.m_TextureType = ct_LocalTextureType;
-            texture.m_TextureId = TextureFromFile(&texturePath);
+            texture.m_TextureId = TextureFromFile(texturePath.C_Str());
 
             m_LoadedTextures.emplace_back(texture);
             textures.emplace_back(texture);
@@ -203,9 +203,9 @@ namespace Engine
         return textures;
     }
 
-    uint32_t CModel::TextureFromFile(const aiString *ct_TexturePath) const
+    uint32_t CModel::TextureFromFile(const char *ct_TexturePath) const
     {
-        std::string fileName = ct_TexturePath->C_Str();
+        std::string fileName = ct_TexturePath;
         fileName = m_ModelDirectory + "/" + fileName;
 
         uint32_t textureId = 0;

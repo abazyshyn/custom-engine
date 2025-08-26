@@ -25,6 +25,12 @@ namespace Engine
     public:
         explicit CModel(const std::string &ct_ModelPath);
 
+        CModel(const CModel &ct_Source) = delete;
+        CModel &operator=(const CModel &ct_RHV) = delete;
+
+        CModel(CModel &&t_Source) = default;
+        CModel &operator=(CModel &&t_RHV) = default;
+
         /**
          * @brief Draws a model.
          *
@@ -60,7 +66,7 @@ namespace Engine
 
         std::vector<Texture_s> LoadMaterialTextures(const aiMaterial *ct_pMaterial, aiTextureType ct_TextureType, TextureType_e ct_LocalTextureType);
 
-        uint32_t TextureFromFile(const aiString *ct_TexturePath) const;
+        uint32_t TextureFromFile(const char *ct_TexturePath) const;
     };
 
 } // namespace Engine
