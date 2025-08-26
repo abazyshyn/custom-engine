@@ -16,7 +16,18 @@ namespace Engine
             const float deltaTime = CalculateDeltaTime();
 
             m_Window.OnUpdate();
+            m_Renderer.OnRender(deltaTime);
         }
+    }
+
+    void CApplication::PushScenesToRenderer(const std::shared_ptr<CScene> &ct_pScene)
+    {
+        CRenderer::GetInstance().SetScenes(ct_pScene);
+    }
+
+    void CApplication::PushScenesToRenderer(const std::vector<std::shared_ptr<CScene>> &ct_Scenes)
+    {
+        CRenderer::GetInstance().SetScenes(ct_Scenes);
     }
 
     CApplication::CApplication()

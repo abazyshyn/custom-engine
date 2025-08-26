@@ -1,12 +1,12 @@
 #pragma once
 
 #include "platform/windows/macro.hpp"
+#include "src/renderer/shader.hpp"
 
 namespace Engine
 {
     // Forward declaration
     class CWindow;
-    class CShader;
     class CEditorCamera;
     class CEntity;
     // class CSkybox;
@@ -30,7 +30,7 @@ namespace Engine
         // CSkybox &m_Skybox;
 
         void DrawDebugNormals(const glm::mat4 &ct_ModelMatrix, const glm::mat4 &ct_ViewMatrix,
-                              const std::shared_ptr<CEditorCamera> &ct_pEditorCamera, const std::shared_ptr<CEntity> &ct_pEntity);
+                              const std::shared_ptr<CEditorCamera> &ct_pEditorCamera, const std::unique_ptr<CEntity> &ct_pEntity);
 
     private:
         virtual void Init() = 0;

@@ -20,6 +20,7 @@ target_compile_definitions(
            $<$<BOOL:${UNIX}>:ENGINE_LINUX=1>
     PRIVATE ENGINE_BUILD=1
             GLFW_INCLUDE_NONE=1
+            ENGINE_RESOURCES_DIR="${CUSTOM_ENGINE_ROOT_DIR}/res"
             $<$<CONFIG:Debug>:ENGINE_DEBUG=1>
             $<$<CONFIG:RelWithDebInfo>:ENGINE_DEVELOPMENT=1>
             $<$<CONFIG:Release>:ENGINE_SHIP=1>)
@@ -39,6 +40,7 @@ include(SetVendorOutput)
 set_vendor_output("glad")
 set_vendor_output("glfw")
 set_vendor_output("assimp")
+set_vendor_output("spdlog")
 
 target_precompile_headers(${CUSTOM_ENGINE} PUBLIC
                           "${CUSTOM_ENGINE_SRC_DIR}/pch.hpp")

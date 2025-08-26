@@ -4,13 +4,12 @@
 
 class CSandbox final : public Engine::CApplication
 {
-public:
-    // TODO: commit function that sends all scenes to renderer
-private:
-    Sandbox::CBasicLightScene m_BasicLightScene;
 };
 
 Engine::CApplication &Engine::CreateApplication()
 {
+    // issue with transferring the ownership
+    CSandbox::PushScenesToRenderer(std::make_shared<Sandbox::CBasicLightScene>());
+
     return CSandbox::GetInstance();
 }

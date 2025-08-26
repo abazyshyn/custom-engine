@@ -7,8 +7,8 @@
 namespace Engine
 {
 
-    CEntity::CEntity(const CModel &ct_Model)
-        : m_Model(ct_Model)
+    CEntity::CEntity(CModel &&t_Model)
+        : m_Model(std::move(t_Model))
     {
     }
 

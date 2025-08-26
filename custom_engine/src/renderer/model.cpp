@@ -17,8 +17,7 @@ namespace Engine
 
     void CModel::Draw(CShader &ct_Shader) const
     {
-        ENGINE_TRACE_LOG("Drawing model...",
-                         "\nModel name:", m_ModelName);
+        ENGINE_INFO_LOG("Drawing model: {0}", m_ModelName);
 
         for (const CMesh &mesh : m_Meshes)
         {
@@ -34,8 +33,7 @@ namespace Engine
         m_ModelName = ct_ModelPath.substr(ct_ModelPath.find_last_of('/') + 1);
 #endif
 
-        ENGINE_TRACE_LOG("Loading model...",
-                         "\nModel name:", m_ModelName);
+        ENGINE_INFO_LOG("Loading model: {0}", m_ModelName);
 
         Assimp::Importer importer;
 
@@ -88,16 +86,14 @@ namespace Engine
 
     CMesh CModel::ProcessMesh(aiMesh *t_pMesh, const aiScene *ct_pScene)
     {
-        ENGINE_TRACE_LOG("Processing mesh...",
-                         "\nMesh:", t_pMesh->mName.C_Str());
+        ENGINE_INFO_LOG("Processing mesh: {0}", t_pMesh->mName.C_Str());
 
         std::vector<Vertex_s> vertices{};
         std::vector<uint32_t> indices{};
         std::vector<Texture_s> textures{};
 
         // Process positions
-        ENGINE_TRACE_LOG("Processing mesh vertex positions...",
-                         "\nMesh:", t_pMesh->mName.C_Str());
+        ENGINE_TRACE_LOG("Processing mesh vertex positions: {0}", t_pMesh->mName.C_Str());
 
         for (size_t i = 0; i < t_pMesh->mNumVertices; ++i)
         {
@@ -133,8 +129,7 @@ namespace Engine
         }
 
         // Process indices
-        ENGINE_TRACE_LOG("Processing mesh indices...",
-                         "\nMesh:", t_pMesh->mName.C_Str());
+        ENGINE_TRACE_LOG("Processing mesh indices: {0}", t_pMesh->mName.C_Str());
 
         for (size_t i = 0; i < t_pMesh->mNumFaces; ++i)
         {
@@ -142,13 +137,12 @@ namespace Engine
 
             for (size_t j = 0; j < face.mNumIndices; ++j)
             {
-                indices.emplace_back(face.mIndices[j]);
+                indices.push_back(face.mIndices[j]);
             }
         }
 
         // Process textures(materials)
-        ENGINE_TRACE_LOG("Processing mesh textures...",
-                         "\nMesh:", t_pMesh->mName.C_Str());
+        ENGINE_TRACE_LOG("Processing mesh textures: {0}", t_pMesh->mName.C_Str());
 
         aiMaterial *pMaterial = ct_pScene->mMaterials[t_pMesh->mMaterialIndex];
 
@@ -162,8 +156,7 @@ namespace Engine
         textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
-        ENGINE_WARN_LOG("Mesh processed.",
-                        "\nMesh:", t_pMesh->mName.C_Str());
+        ENGINE_WARN_LOG("Mesh processed: {0}", t_pMesh->mName.C_Str());
 
         return CMesh(vertices, indices, textures, t_pMesh->mName.C_Str());
     }
@@ -179,8 +172,7 @@ namespace Engine
             aiString texturePath{};
             ct_pMaterial->GetTexture(ct_TextureType, i, &texturePath);
 
-            ENGINE_TRACE_LOG("Loading texture",
-                             "\nTexture:", texturePath.C_Str());
+            ENGINE_TRACE_LOG("Loading texture: {0}", texturePath.C_Str());
 
             bool skipTextureLoading = false;
             for (const Texture_s &loadedTexture : m_LoadedTextures)
@@ -202,7 +194,7 @@ namespace Engine
 
             texture.m_TexturePath = texturePath.C_Str();
             texture.m_TextureType = ct_LocalTextureType;
-            texture.m_TextureId = TextureFromFile(&texturePath);
+            texture.m_TextureId = TextureFromFile(texturePath.C_Str());
 
             m_LoadedTextures.emplace_back(texture);
             textures.emplace_back(texture);
@@ -211,9 +203,9 @@ namespace Engine
         return textures;
     }
 
-    uint32_t CModel::TextureFromFile(const aiString *ct_TexturePath) const
+    uint32_t CModel::TextureFromFile(const char *ct_TexturePath) const
     {
-        std::string fileName = ct_TexturePath->C_Str();
+        std::string fileName = ct_TexturePath;
         fileName = m_ModelDirectory + "/" + fileName;
 
         uint32_t textureId = 0;
@@ -224,10 +216,9 @@ namespace Engine
 
         if (!pImageData)
         {
-            // TODO: provide some fallback
+            // TODO: provide some fallback texture
             stbi_image_free(pImageData);
-            ENGINE_ERROR_LOG("Failed to load texture pImageData.",
-                             "\nTexture: ", fileName);
+            ENGINE_CRITICAL_LOG("Failed to load texture pImageData: {0}", fileName);
             ENGINE_ASSERT(0);
             throw std::runtime_error("Failed to load texture pImageData.");
         }

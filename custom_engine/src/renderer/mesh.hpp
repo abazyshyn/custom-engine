@@ -46,8 +46,15 @@ namespace Engine
     class CMesh
     {
     public:
-        explicit CMesh(const std::vector<Vertex_s> &ct_Vertices, const std::vector<uint32_t> &ct_Indices,
-                       const std::vector<Texture_s> &ct_Textures, const std::string &ct_Name);
+        explicit CMesh(std::vector<Vertex_s> ct_Vertices, std::vector<uint32_t> ct_Indices,
+                       std::vector<Texture_s> ct_Textures, std::string ct_Name);
+
+        CMesh(const CMesh &ct_Source) = delete;
+        CMesh &operator=(const CMesh &ct_RHV) = delete;
+
+        CMesh(CMesh &&t_Source) = default;
+        CMesh &operator=(CMesh &&t_RHV) = default;
+
         ~CMesh();
 
         /**

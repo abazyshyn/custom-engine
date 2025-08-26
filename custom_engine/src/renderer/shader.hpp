@@ -25,7 +25,7 @@ namespace Engine
     class ENGINE_API CShader
     {
     public:
-        explicit CShader(const std::vector<std::filesystem::path> &ct_ShaderPaths);
+        explicit CShader(std::vector<std::filesystem::path> ct_ShaderPaths);
         ~CShader();
 
         /**
@@ -82,17 +82,17 @@ namespace Engine
 
         // unsigned char _pad[4] = {}; // Explicit padding
 
-        void CreateShaderProgramFromSource(const std::vector<std::filesystem::path> &ct_ShaderSourcePaths);
+        void CreateShaderProgramFromSource(std::vector<std::filesystem::path> ct_ShaderSourcePaths);
 
-        [[nodiscard]] std::string ReadFromSource(const std::string &ct_ShaderSourcePath) const;
+        [[nodiscard]] std::string ReadFromSource(std::string ct_ShaderSourcePath) const;
 
-        void CompileShaderFromSource(ShaderType_e ct_LocalShaderType, const std::string &ct_ShaderSource) const;
+        void CompileShaderFromSource(ShaderType_e ct_LocalShaderType, std::string ct_ShaderSource) const;
 
-        [[nodiscard]] ShaderType_e FindShaderType(const std::string &ct_ShaderPath) const;
+        [[nodiscard]] ShaderType_e FindShaderType(std::string ct_ShaderPath) const;
 
-        [[nodiscard]] int32_t UniformFromCache(const std::string &ct_UniformName);
+        [[nodiscard]] int32_t UniformFromCache(std::string ct_UniformName);
 
-        static void IsUniformLocationValid(const std::string &ct_UniformName, int32_t ct_UniformLocation);
+        static void IsUniformLocationValid(std::string ct_UniformName, int32_t ct_UniformLocation);
     };
 
 } // namespace Engine
