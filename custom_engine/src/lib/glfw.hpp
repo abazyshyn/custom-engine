@@ -10,12 +10,12 @@ namespace GLFW
      */
     struct GlfwData_s
     {
-        GLFWwindow *m_pWindow = nullptr;         // Window pointer
-        std::string m_WindowTitle = "RenderLab"; // Window title
-        int32_t m_WindowWidth = 1280;            // Window width
-        int32_t m_WindowHeight = 720;            // Window height
-        bool m_VSync = true;                     // VSync status
-        bool m_IsRunning = true;                 // window status
+        GLFWwindow *m_pWindow = nullptr;             // Window pointer
+        std::string m_WindowTitle = "Custom Engine"; // Window title
+        int32_t m_WindowWidth = 1280;                // Window width
+        int32_t m_WindowHeight = 720;                // Window height
+        bool m_VSync = true;                         // VSync status
+        bool m_IsRunning = true;                     // window status
 
     private:
         unsigned char _pad[6] = {}; // Explicit padding
